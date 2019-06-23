@@ -51,13 +51,13 @@ private fun LocalTime.plusWorkingHour(hoursToAdd: Long): LocalTime {
     if (hoursToAdd == 0L)
         return this
 
-    var result: LocalTime = this
+    var incrementedLocalTime = this.plusHours(hoursToAdd)
 
-    if (wouldOverflowAfterAdding(hoursToAdd)) {
-        result = result.plusHours(nonWorkingHourLength.toLong())
+    if (!incrementedLocalTime.isWorkingHour()) {
+        incrementedLocalTime = shiftIntoWorkingHourFrame(incrementedLocalTime)
     }
 
-    return result.run {
-        plusHours(hoursToAdd)
-    }
+    return incrementedLocalTime
 }
+
+private fun shiftIntoWorkingHourFrame(result: LocalTime) = result.plusHours(nonWorkingHourLength)

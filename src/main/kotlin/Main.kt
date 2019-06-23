@@ -5,7 +5,7 @@ import java.time.LocalTime
 const val startOfWorkingHour = 9
 const val endOfWorkingHour = 17
 const val workingHourLength = endOfWorkingHour - startOfWorkingHour
-const val nonWorkingHourLength: Int = startOfWorkingHour + (24 - endOfWorkingHour)
+const val nonWorkingHourLength: Long = startOfWorkingHour + (24 - endOfWorkingHour).toLong()
 
 // Inclusive start, exclusive end, [9:00, 17:00), or [9:00, 16:59:59]
 val startOfWorkingHourLocalTime: LocalTime = LocalTime.of(startOfWorkingHour, 0, 0)
